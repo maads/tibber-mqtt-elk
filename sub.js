@@ -1,9 +1,9 @@
 var mqtt = require('mqtt');
-var client = mqtt.connect( process.env.TIBBER_MQTT || 'mqtt://192.168.10.157:1883');
+var client = mqtt.connect( process.env.TIBBER_MQTT);
 
 var elasticsearch = require('elasticsearch');
 var elasticClient = new elasticsearch.Client({
-  host: process.env.TIBBER_ELASTIC || '192.168.10.157:9200',
+  host: process.env.TIBBER_ELASTIC,
   log: 'trace'
 });
 
