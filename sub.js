@@ -1,14 +1,14 @@
 var mqtt = require('mqtt');
-var client = mqtt.connect('mqtt://192.168.10.142:1883');
+var client = mqtt.connect( process.env.TIBBER_MQTT || 'mqtt://192.168.10.157:1883');
 
 var elasticsearch = require('elasticsearch');
 var elasticClient = new elasticsearch.Client({
-  host: '192.168.10.142:9200',
+  host: process.env.TIBBER_ELASTIC || '192.168.10.157:9200',
   log: 'trace'
 });
 
 client.on('connect', function () {
-    client.subscribe('ams');
+    client.subscribe(process.env.TIBBER_MQTT_TOPIC || 'ams');
     console.log('subscribing to ams');
 })
 
